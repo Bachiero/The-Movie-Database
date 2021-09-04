@@ -7,8 +7,8 @@
 import UIKit
 
 
-func RegisterCollectionViewCell(collectionView:  UICollectionView) {
-    
-    
-    collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
-}
+//func RegisterCollectionViewCell(collectionView:  UICollectionView) {
+//
+//
+//    collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+//}

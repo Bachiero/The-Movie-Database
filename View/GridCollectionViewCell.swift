@@ -16,6 +16,7 @@ class GridCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    
        
         movieImage?.clipsToBounds = true
         movieImage?.contentMode = .scaleAspectFill
@@ -23,20 +24,18 @@ class GridCollectionViewCell: UICollectionViewCell {
         movieImage?.frame = CGRect(x: 0, y: 0, width: 130, height: 100)
         movieImage?.layer.borderWidth = 0.4
         movieImage?.layer.borderColor = UIColor.white.cgColor
+    
         
-       
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
 }
     
-    public func configure(with name: String){
-        movieImage?.image = UIImage(named: name)
+    public func configure(with model: Movie){
+        movieImage?.image = UIImage(named: model.posterImage ?? "")
     }
     
-    
-
    
 }
 

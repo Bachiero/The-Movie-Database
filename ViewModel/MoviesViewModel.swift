@@ -14,9 +14,10 @@ class MovieViewModel {
     
     func fetchPopularMoviesData(completion: @escaping () -> ()) {
         
+//        print("fetch")
         // weak self - prevent retain cycles
         apiService.getPopularMoviesData { [weak self] (result) in
-            
+//            print(result)
             switch result {
             case .success(let listOf):
                 self?.popularMovies = listOf.movies
@@ -38,4 +39,6 @@ class MovieViewModel {
     func cellForRowAt (indexPath: IndexPath) -> Movie {
         return popularMovies[indexPath.row]
     }
+    
+    
 }

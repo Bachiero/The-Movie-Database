@@ -2,7 +2,8 @@ import UIKit
 
 class GridViewController: UIViewController {
     
-   
+    let vm = MovieViewModel()
+    
     
     private var model: [String]?
     var randomPictures = ["car1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1"]
@@ -24,7 +25,19 @@ class GridViewController: UIViewController {
         gridCollectionView?.delegate = self
         
         
+        vm.fetchPopularMoviesData { [weak self] in
+            DispatchQueue.main.async {
+                self?.gridCollectionView?.reloadData()
+                print(self?.gridCollectionView)
+            }
+            
+//            print(self?.vm.cellForRowAt(indexPath: IndexPath(row: 0, section: 0)))
+//            self?.gridCollectionView?.reloadData()
+            
+        }
     }
+     
+   
     
     
 //
@@ -39,22 +52,30 @@ class GridViewController: UIViewController {
     
 }
 
-extension GridViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension GridViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?.count ?? 0
+        return vm.numberOfRowsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let model = model else { return UICollectionViewCell() }
+        print(vm.cellForRowAt(indexPath: indexPath))
+        let model = vm.cellForRowAt(indexPath: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCollectionViewCell.identifier, for: indexPath) as! GridCollectionViewCell
-        cell.configure(with: model[indexPath.row])
+        cell.configure(with: model)
         return cell
+    
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let desVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        self.navigationController?.pushViewController(desVC, animated: true)
+        print(navigationController)
+        print(desVC)
+    }
     
     
   

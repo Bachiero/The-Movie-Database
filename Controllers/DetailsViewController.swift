@@ -16,6 +16,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var movieYear: UILabel!
     @IBOutlet weak var movieOverview: UILabel!
     @IBOutlet weak var movieRate: UILabel!
+    @IBOutlet weak var originalTitle: UILabel!
     
     private var urlString: String = ""
     

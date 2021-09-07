@@ -7,9 +7,10 @@ class GridViewController: UIViewController {
     private var model: [String]?
     var randomPictures = ["car1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1", "cat1", "panda1","car1", "cat1"]
     
-    @IBOutlet var favButton: UIButton?
-    @IBOutlet var filterButton: UIButton?
-    @IBOutlet var gridCollectionView: UICollectionView?
+    @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var gridCollectionView: UICollectionView?
+//    @IBOutlet weak var likeImageViewWidthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,18 @@ class GridViewController: UIViewController {
         gridCollectionView?.delegate = self
         
         
-        
     }
     
+    
+//
+//    lazy var likeAnimator = FavAnimator(container: UIContentView, layoutConstraint: likeImageViewWidthConstraint)
+//    //MARK implementation of animations on singleTap
+//    lazy var singleTapRecognizer: UITapGestureRecognizer = {
+//
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
+//        tapRecognizer.numberOfTapsRequired = 1
+//        return tapRecognizer
+//    }()
     
 }
 
@@ -43,5 +53,29 @@ extension GridViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configure(with: model[indexPath.row])
         return cell
     }
+    
+    
+    
+    
+  
+    
+    
+//    @objc
+//    func didTap() {
+//
+//        let isLiked = self.favButton.isSelected
+//        if isLiked == false {
+//            FavAnimator.animate { [weak self] in
+//                self?.favButton.tintColor = UIColor.systemPink
+//                self?.favButton.isSelected = true
+//            }
+//        }
+//        else {
+//            FavAnimator.animate { [weak self] in
+//                self?.favButton.tintColor = UIColor.black
+//                self?.favButton.isSelected = false
+//            }
+//        }
+//    }
     
 }

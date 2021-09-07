@@ -35,6 +35,7 @@ class GridCollectionViewCell: UICollectionViewCell {
         movieImage?.image = UIImage(named: name)
     }
     
+    
 
    
 }
